@@ -1,0 +1,85 @@
+package lisa_eliminar1.pkg2;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @Francelia_Bueno
+ */
+public class Lisa_eliminar12 {
+    Scanner scaner= new Scanner(System.in);
+        
+
+    static class Nodo {
+        //Datos y enlace usados
+        String name; 
+        Nodo next;
+    }
+    Nodo Ini = null; //Creación de nodos
+    Nodo top = null;
+    
+    public static void main(String[] args) {
+        Scanner scaner = new Scanner(System.in);
+        Lisa_eliminar12 nodos = new Lisa_eliminar12(); //Creacion de un objeto llamado nodos
+        int Opcion;
+         do {
+            System.out.print("\n" + "1. Agregar nodo.\n"
+                    + "2. Eliminar nodo.\n"
+                    + "3. Mostrar lista.\n"
+                    + "4. Salir.\n"
+                    + "Selecciona alguna opción: ");//Imprimir menu
+            switch (Opcion = scaner.nextInt()) {
+                case 1: //Opción 1 para agregar un nodo.
+                    nodos.AgregarNodo(); //Llamamos los metodos a ejecular con nuestro objeto creado.
+                    break;
+                case 2: //Opción 2 para mostrar la lista de nodos.
+                    nodos.EliminarNodo();
+                    break;
+                case 3: //Opción 3 para eliminar el ultimo nodo de la lista.
+                    nodos.MostrarLista();
+                    break;
+            }
+        } while (Opcion != 4); //Opción 4 para terminar el programa.
+    }
+
+    public void AgregarNodo() {
+        if (top == null) { //Pregunta si el nodo esta vacio o nulo.
+            top = new Nodo(); //Crear el nodo proncipal.
+            System.out.print("\n" + "Ingresa el contenido para el nodo: ");
+            top.name = scaner.nextLine();
+        } else {
+            Nodo temp = new Nodo(); //Crear nuevo nodo temporal.
+            System.out.print("\n" + "Ingresa el contenido para el nodo: ");
+            temp.name = scaner.nextLine(); 
+            temp.next = top; //temp.next hacer referencia al ultimo nodo de la lista.
+            top = temp; //El nodo temporal creado anteriormente va ser el último de nodo la lista.
+        }
+    }
+
+    public void EliminarNodo() {
+        Nodo temp = top; //En esta parte en un nodo temporal tendra el contenido del último nodo agregado.
+        if (top != null) { //Si top es diferente a nulo entonces eliminara el último nodo.
+            System.out.print("El nodo "+ temp.name+ " se elimino.\n"); //Entonces temp.name mandara un mensaje de salida diciendo cual es el último nodo agregado.
+            top = top.next; //top hace referencia al ultimo nodo creado, entonces eleminara ese nodo.
+        } else {
+            System.out.println("La lista esta vacia"); // Si top aun es nulo significa que no hay ningún nodo en la lista y no eleminara ningún nodo.
+        }
+    }
+
+    public void MostrarLista() {
+        Nodo temp = new Nodo();
+        temp = top; // Se crea un nodo temporal para mostrar todos los nodos creados
+        if (top != null) {//Si top es diferente a nulo entonces mostrara toda la lista
+            System.out.println("");
+            while (temp != null) { //Mientas el nodo temporal es diferente a nulo mostrara los nodos
+                System.out.println("Nodo: " + temp.name+ " "); //temp.name mandara un mensaje de salida mostrando todos la lista de nodos.
+                temp = temp.next; //Indicara que solo muestre todos los nodes agregados.
+            }
+            
+        } else {
+            System.out.println( "La lista esta vacia"); // Si top aun es nulo significa que no hay ningún nodo en la lista y no mostrara ningún nodo.
+        }
+        
+    }
+    
+}
